@@ -14,5 +14,33 @@ public class FinishLocation extends Actor
      */
     public void act()
     {
+        if (isGameWon()) {
+            transitionToGameWorld();
+        }
+    }
+
+    /**
+     * checks if game is won
+     */
+    public boolean isGameWon()
+    {
+        World MyWorld = getWorld();
+        Actor Ladybug = getOneIntersectingObject(Ladybug.class);
+        if (Ladybug != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * transitions to losing screen
+     */
+    public void transitionToGameWorld()
+    {
+        World gameWonWorld =  new  GameWonWorld();
+        gameWonWorld.started();
+        Greenfoot.setWorld(gameWonWorld);
     }
 }
