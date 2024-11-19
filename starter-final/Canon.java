@@ -14,5 +14,45 @@ public class Canon extends Actor
      */
     public void act()
     {
+        if (isGameLost()) {
+            transitionToGameOver();
+        }
+        shoot();
+    }
+
+    /* shots canonballs*/
+
+    /**
+     * 
+     */
+    public void shoot()
+    {
+        World world = getWorld();
+        Actor wait;
+    }
+
+    /**
+     * checks if game is lost
+     */
+    public boolean isGameLost()
+    {
+        World world = getWorld();
+        if (world.getObjects(Ladybug.class).isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * transition to losing screen
+     */
+    public void transitionToGameOver()
+    {
+        World MyWorld = getWorld();
+        World gameOverWorld =  new  GameOverWorld();
+        gameOverWorld.started();
+        Greenfoot.setWorld(gameOverWorld);
     }
 }
